@@ -1,25 +1,32 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import LogInBtsp from './componants/LogInBtsp';
-import RegisterReactBts from "./componants/RegisterReactBts";
-import Main from './layout/Main';
+import Home from './componants/Home';
+import Login from './componants/Login';
+import Orders from './componants/Orders';
+import Register from './componants/Register';
+import Main from './layouts/Main';
+import PrivateRoute from './routes/PrivateRoute';
 
 const router = createBrowserRouter([
   {
-    path: '/', 
-    element: <Main></Main>, 
+    path: '/',
+    element: <Main></Main>,
     children: [
       {
         path: '/',
-        element: <RegisterReactBts></RegisterReactBts>
+        element: <Home></Home>
       },
       {
-        path: '/register',
-        element: <RegisterReactBts></RegisterReactBts>
+        path:'/orders',
+        element: <PrivateRoute><Orders></Orders></PrivateRoute>
       },
       {
         path: '/login',
-        element: <LogInBtsp></LogInBtsp>,
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
       }
     ]
   }
@@ -27,7 +34,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
