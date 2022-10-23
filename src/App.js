@@ -1,40 +1,53 @@
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
-import Home from './componants/Home';
-import Login from './componants/Login';
-import Orders from './componants/Orders';
-import Register from './componants/Register';
-import Main from './layouts/Main';
-import PrivateRoute from './routes/PrivateRoute';
+import Main from './Layouts/Main';
+import Shop from './componants/Shop/Shop'
+import Orders from './componants/Orders/Orders';
+import Inventory from './componants/Inventory/Inventory';
+import About from './componants/About/About';
+import { productsAndCartLoader } from './loaders/productsAndCartLoader';
+import LogIn from './componants/LogIn/LogIn';
+import SignUp from './componants/SignUp/SignUp';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Main></Main>,
-    children: [
-      {
-        path: '/',
-        element: <Home></Home>
-      },
-      {
-        path:'/orders',
-        element: <PrivateRoute><Orders></Orders></PrivateRoute>
-      },
-      {
-        path: '/login',
-        element: <Login></Login>
-      },
-      {
-        path: '/register',
-        element: <Register></Register>
-      }
-    ]
-  }
-])
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Main></Main>, 
+      children: [
+        {
+          path: '/shop',
+          element: <Shop></Shop>
+        },
+        {
+          path: '/orders',
+          loader: productsAndCartLoader,
+          element: <Orders></Orders>
+        }, 
+        {
+          path: '/inventory', 
+          element: <Inventory></Inventory>
+        },
+        {
+          path: '/about', 
+          element: <About></About>
+        },
+        {
+          path: '/login',
+          element: <LogIn></LogIn>
+        },
+        {
+          path: '/signup',
+          element: <SignUp></SignUp>
+        }
+      ]
+    }, 
+    
+  ])
   return (
-    <div className="App">
+    <div>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );
