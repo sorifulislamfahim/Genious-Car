@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/UseTitle';
 
 const Profile = () => {
     const {user} = useContext(AuthContext);
+    useTitle("UserProfile")
     return (
         <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">

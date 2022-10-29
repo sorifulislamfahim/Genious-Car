@@ -1,9 +1,11 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../../hooks/UseTitle';
 import NewsSummaryCard from '../../Share/NewsSummaryCard/NewsSummaryCard';
 
 const Home = () => {
     const allNews = useLoaderData();
+    useTitle("Home")
     return (
         <div>
             {
