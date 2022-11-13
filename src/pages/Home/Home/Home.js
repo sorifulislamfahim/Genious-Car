@@ -1,19 +1,14 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
-import useTitle from '../../../hooks/UseTitle';
-import NewsSummaryCard from '../../Share/NewsSummaryCard/NewsSummaryCard';
+import About from '../About/About';
+import Banar from '../Banar/Banar';
+import Services from '../Services/Services';
 
 const Home = () => {
-    const allNews = useLoaderData();
-    useTitle("Home")
     return (
         <div>
-            {
-                allNews.map(news => <NewsSummaryCard
-                    key={news._id}
-                    news={news}
-                ></NewsSummaryCard>)
-            }
+            <Banar></Banar>
+            <About></About>
+            <Services></Services>
         </div>
     );
 };

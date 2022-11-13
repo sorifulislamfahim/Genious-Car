@@ -1,51 +1,50 @@
 import { createBrowserRouter } from "react-router-dom";
-import Main from "../../layouts/Main";
-import Home from "../../pages/Home/Home/Home";
-import Catagory from '../../pages/Catagorys/Catagory/Catagory';
-import News from "../../pages/News/News/News";
-import LogIn from "../../pages/LogIn/LogIn/LogIn";
-import Register from "../../pages/LogIn/Register/Register";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import TermsCondition from "../../pages/Others/TermsCondition/TermsCondition";
-import Profile from "../../pages/Others/Profile/Profile";
+import Main from "../../LayOuts/Main";
+import Blog from "../../Pages/Blog/Blog";
+import Chekout from "../../Pages/Checkout/Chekout";
+import Home from "../../Pages/Home/Home/Home";
+import Services from "../../Pages/Home/Services/Services";
+import Login from "../../Pages/LogIn/Login";
+import Orders from "../../Pages/Orders/Orders";
+import Signup from "../../Pages/Signup/Signup";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: '/',
-        element: <Main></Main>, 
+        element: <Main></Main> ,
         children: [
             {
-               path: '/', 
-               element: <Home></Home>, 
-               loader: () => fetch('https://dragon-news-server-tan-eight.vercel.app/news')
-            }, 
-            {
-                path: '/catagory/:id',
-                element: <Catagory></Catagory>, 
-                loader: ({params}) => fetch(`https://dragon-news-server-tan-eight.vercel.app/catagory/${params.id}`)
-            }, 
-            {
-                path: 'news/:id', 
-                element: <PrivateRoute><News></News></PrivateRoute>, 
-                loader: ({params}) => fetch(`https://dragon-news-server-tan-eight.vercel.app/news/${params.id}`)
-            }, 
-            {
-                path: '/login', 
-                element: <LogIn></LogIn>
-            }, 
-            {
-                path: '/register', 
-                element: <Register></Register>
+                path: '/', 
+                element: <Home></Home>
             },
             {
-                path: '/terms',
-                element: <TermsCondition></TermsCondition>
+                path: '/login',
+                element: <Login></Login>
             }, 
             {
-                path: 'profile',
-                element: <PrivateRoute><Profile></Profile></PrivateRoute>
+                path: '/signup',
+                element: <Signup></Signup>
+            }, 
+            {
+                path: '/blog', 
+                element: <Blog></Blog>
+            },
+            {
+                path: '/checkout/:id', 
+                element: <PrivateRoutes><Chekout></Chekout></PrivateRoutes> , 
+                loader: ({params}) => fetch(`https://genious-car-server-eight.vercel.app/services/${params.id}`)
+            }, 
+            {
+                path: '/orders', 
+                element: <PrivateRoutes><Orders></Orders></PrivateRoutes>
+            }, 
+            {
+                path: '/services', 
+                element: <Services></Services>
             }
         ]
-    }
-])
+    },
+]); 
+export default router;
